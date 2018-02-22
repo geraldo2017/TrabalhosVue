@@ -6,20 +6,20 @@
   <main>
     <section>
       <form class="secund">
-        <!-- <section class="secund-01"> -->
+        <!-- <section class="secund-o1" -->
           <label>Ordenado por:</label>
-          <select class="rap-1" v-model="configs.orderBy">
+          <select class="rap" v-model="configs.orderBy">
             <option value="lastname">Ultimo Nome</option>
             <option value="firstname">Primeiro Nome</option>
           </select><br><br>
-        <!-- </section>
-        <section class="secund-02"> -->
           <label>Ordem:</label>
-          <select class="rap-2" v-model="configs.order">
+          <select class="rap" v-model="configs.order">
             <option value="asc">Crescente</option>
             <option value="desc">Decrescente</option>
-          </select>
-        <!-- </section> -->
+          </select><br><br>
+
+          <label>Filtrar</label>
+          <input type="text" class="form-control" placeholder="Filtrar por nome" v-model="configs.filter">
       </form>
     </section>
     <section>
@@ -34,6 +34,8 @@
 </div>  
 </template>
 <script>
+import _ from 'lodash'
+
 export default{
   name:'Geraldo',
   data(){
@@ -69,18 +71,40 @@ export default{
   },
   computed: {
     list() {
-      return _.orderBy(this.alunos, this.configs.orderBy, this.configs.order); 
-      
-      //  if (_.isEmpty(filter)) {
-      //   return list;
-      // }
-      
-    },
+      const filter = this.configs.filter;
+      const list = _.orderBy(this.alunos, this.configs.orderBy, this.configs.order);
 
-  }
+      if (_.isEmpty(filter)) {
+        return list;
+      }
+     
+       return _.filter(list, aluno => aluno.firstname.indexOf(filter) >= 0);
+    
+    }
+
+  },
 }
+
 </script>
 
 <style>
-  
+ .principal{ 
+       background-color: #8B4513;
+       color: #fff;
+       display: flex;
+       align-items: center;
+
+        }
+ .principal-01{
+       color:;
+       height:;
+       display:;
+       align-items:;
+       justify-content:;
+
+        }
+
+
+
+
 </style>
