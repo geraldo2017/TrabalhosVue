@@ -22,19 +22,13 @@
           <input type="text" class="form-control" placeholder="Filtrar por nome" v-model="configs.filter">
       </form>
     </section>
-    <section>
-      <ol>
-        <li v-for="aluno in list">
-          {{ aluno.firstname }}
-          {{ aluno.lastname }}
-        </li>
-      </ol>
-    </section>
+    <ListaAlunos :list="list"></ListaAlunos>
   </main>
 </div>  
 </template>
 <script>
 import _ from 'lodash'
+import ListaAlunos from './ListaAlunos'
 
 export default{
   name:'Geraldo',
@@ -83,6 +77,9 @@ export default{
     }
 
   },
+  components:{
+    ListaAlunos
+  }
 }
 
 </script>
@@ -92,11 +89,13 @@ export default{
        background-color: #8B4513;
        color: #fff;
        display: flex;
-       align-items: center;
-
+       align-items:center;
         }
- .principal-01{
-       color:;
+  .principal-01{ 
+       
+        }
+ .secund{
+       color: #fff;
        height:;
        display:;
        align-items:;
