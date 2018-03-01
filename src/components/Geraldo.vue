@@ -13,7 +13,7 @@
             <option value="firstname">Primeiro Nome</option>
           </select><br><br>
           <label>Ordem:</label>
-          <select class="rap" v-model="configs.order">
+          <select class="rap-1" v-model="configs.order">
             <option value="asc">Crescente</option>
             <option value="desc">Decrescente</option>
           </select><br><br>
@@ -22,7 +22,12 @@
           <input type="text" class="form-control" placeholder="Filtrar por nome" v-model="configs.filter">
       </form>
     </section>
-    <ListaAlunos :list="list"></ListaAlunos>
+    <ListaAlunos 
+      :list="list"
+      @removeStudant="value => {removeStudant = value}"
+      @remove="value => {remove = value}"
+    ></ListaAlunos>
+
   </main>
 </div>  
 </template>
@@ -34,6 +39,8 @@ export default{
   name:'Geraldo',
   data(){
      return {
+      remove:false,
+      removeStudant:'',
       configs:{
         orderBy: 'firstname',
         order: 'desc',
@@ -63,6 +70,15 @@ export default{
       ]
     }
   },
+  watch:{
+    removeStudant(){
+      if(this.remove === true) {
+        this.alunos.splice(this.removeStudant,1)
+        this.remove = false
+        this.removeStudant = ''
+      }
+    }
+  },
   computed: {
     list() {
       const filter = this.configs.filter;
@@ -87,21 +103,29 @@ export default{
 <style>
  .principal{ 
        background-color: #8B4513;
-       color: #fff;
+       color: #000;
        display: flex;
-       align-items:center;
+       align-items: center;
+       justify-content: space-around;
         }
-  .principal-01{ 
-       
+  .principal-01{
+       color: #000;
+       display: flex;
+       align-items:;
+       justify-content:;
+       background-color: red;
+       padding-top: 100px;
+       padding-bottom: 100px;
+       padding-right:30px; 
+       padding-left:30px;
         }
  .secund{
        color: #fff;
-       height:;
-       display:;
-       align-items:;
-       justify-content:;
+       margin-top: 10%;
 
-        }
+     }
+ .rap{
+ }
 
 
 

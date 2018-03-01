@@ -1,9 +1,10 @@
 <template>
 	 <section>
       <ol>
-        <li v-for="aluno in list">
+        <li v-for="(aluno,index) in list">
           {{ aluno.firstname }}
           {{ aluno.lastname }}
+          <button @click="removeStudant(index)">X</button>
         </li>
       </ol>
     </section>
@@ -19,6 +20,13 @@ export default{
 	},
 	data(){
 		return{}
+	},
+	methods:{
+		removeStudant(value){
+			this.$emit('removeStudant',value)
+			this.$emit('remove', true)
+		}
+
 	}
 }
 	
